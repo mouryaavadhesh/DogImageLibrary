@@ -15,6 +15,12 @@ class DogImages {
     private var currentIndex = 0
     private var firstImage = ""
 
+    constructor() {
+        // Do something here.
+        // Call the getImage() method to get the first image.
+         getImage()
+        Log.d("DogImages", "Image:")
+    }
 
     fun getImage(): String {
         val url = "https://dog.ceo/api/breeds/image/random"
