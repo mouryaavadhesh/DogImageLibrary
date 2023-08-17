@@ -74,6 +74,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation ("com.github.bumptech.glide:glide:4.15.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
 
 
 
