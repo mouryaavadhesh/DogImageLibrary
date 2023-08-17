@@ -1,48 +1,64 @@
 package com.getimage.avdhesh.assignment
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.getimage.avdhesh.assignment.ui.theme.GetImageTheme
+import com.bumptech.glide.Glide
 import com.getimage.library.avdhesh.DogImages
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : ComponentActivity() {
+    val  getImage=DogImages()
+    var image =""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        image=getImage.getFirstImage()
+        setContentView(R.layout.activity_main)
 
-        setContent {
-            GetImageTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+        val nextButton = findViewById<Button>(R.id.buttonNext)
+        val previousButton = findViewById<Button>(R.id.buttonPrevious)
+        val submitButton = findViewById<Button>(R.id.buttonSubmit)
+        val enterNumber = findViewById<EditText>(R.id.editTextNumber)
+        val imageview = findViewById<ImageView>(R.id.imageView)
+
+
+        runBlocking {
+            delay(2000) //
+            image=getImage.getFirstImage()
+            Glide.with(this@MainActivity)
+                .load(image)
+                .into(imageview)
+            println("Hello, world!")
+        }
+
+
+        nextButton.setOnClickListener {
+            getImage.getNextImage()
+            Glide.with(this@MainActivity)
+                .load(getImage.getFirstImage())
+                .into(imageview)
+        }
+
+        previousButton.setOnClickListener {
+            getImage.getPreviousImage()
+            Glide.with(this@MainActivity)
+                .load(getImage.getFirstImage())
+                .into(imageview)
+        }
+
+        submitButton.setOnClickListener {
+            if(enterNumber.text.isNotEmpty()) {
+                getImage.getImage(this, enterNumber.text.toString().toInt())
+                Glide.with(this@MainActivity)
+                    .load(getImage.getFirstImage())
+                    .into(imageview)
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    GetImageTheme {
-        Greeting("Android")
-    }
 }
