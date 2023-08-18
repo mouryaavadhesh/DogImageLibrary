@@ -16,9 +16,9 @@ class Image {
 class ImageList {
 
     @SerializedName("status")
-    var status: String? = null
+    var status: String = ""
 
     @SerializedName("message")
-    var message: List<String> = ArrayList<String>()
+    var message: List<String> = emptyList()
 
 }

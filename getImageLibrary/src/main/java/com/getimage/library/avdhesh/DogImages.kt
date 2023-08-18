@@ -19,29 +19,34 @@ class DogImages() {
         getImage()
     }
 
-    fun getImage()  {
+    fun getImage() {
         val call1: Call<Image> = apiInterface!!.doGetImage()
-        call1.enqueue(object : Callback<Image?> {
-            override fun onResponse(call: Call<Image?>, response: Response<Image?>) {
-                displayImage = response.body()!!.message
+        call1.enqueue(object : Callback<Image> {
+            override fun onResponse(call: Call<Image>, response: Response<Image>) {
+                if (response.body()!!.status.isNotEmpty() && response.body()!!.status == "success") {
+                    displayImage = response.body()!!.message
+                }
+                call.cancel()
             }
 
-            override fun onFailure(call: Call<Image?>, t: Throwable) {
+            override fun onFailure(call: Call<Image>, t: Throwable) {
                 call.cancel()
             }
         })
     }
 
-     fun getImage(context: Context, number: Int){
+    fun getImage(context: Context, number: Int) {
         if (number in 1..10) {
-            displayImage=""
-            currentIndex=0
-            dogImages= emptyList()
+            displayImage = ""
+            currentIndex = 0
+            dogImages = emptyList()
             val call1: Call<ImageList> = apiInterface!!.doGetImages(number)
             call1.enqueue(object : Callback<ImageList> {
                 override fun onResponse(call: Call<ImageList>, response: Response<ImageList>) {
-                    dogImages = response.body()!!.message
-                    displayImage = dogImages[0]
+                    if (response.body()!!.status.isNotEmpty() && response.body()!!.status == "success") {
+                        dogImages = response.body()!!.message
+                        displayImage = dogImages[0]
+                    }
                     call.cancel()
                 }
 
