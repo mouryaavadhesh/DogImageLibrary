@@ -32,7 +32,7 @@ class DogImages() {
         })
     }
 
-    fun getImage(context: Context, number: Int) {
+     fun getImage(context: Context, number: Int){
         if (number in 1..10) {
             displayImage=""
             currentIndex=0
@@ -42,6 +42,7 @@ class DogImages() {
                 override fun onResponse(call: Call<ImageList>, response: Response<ImageList>) {
                     dogImages = response.body()!!.message
                     displayImage = dogImages[0]
+                    call.cancel()
                 }
 
                 override fun onFailure(call: Call<ImageList>, t: Throwable) {
@@ -52,7 +53,6 @@ class DogImages() {
             val message = "Enter number should be between less then 10 and more than 0."
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         }
-
     }
 
     fun getNextImage() {

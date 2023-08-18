@@ -18,7 +18,7 @@ class DogImageViewModel : ViewModel() {
         }, 3000)
     }
 
-    fun fetchDogImages(context: Context, number: Int) {
+    suspend  fun fetchDogImages(context: Context, number: Int) {
         getImage.getImage(context, number)
         Handler().postDelayed({
             dogImage.value = getImage.displayImage
