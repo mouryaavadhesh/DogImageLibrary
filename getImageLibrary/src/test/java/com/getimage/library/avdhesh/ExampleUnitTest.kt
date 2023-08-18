@@ -1,11 +1,7 @@
 package com.getimage.library.avdhesh
 
-import android.content.Context
-import org.junit.Assert.*
-import org.junit.Test
 import org.junit.Assert.assertTrue
-import org.mockito.internal.util.StringUtil
-import org.mockito.Mockito.mock
+import org.junit.Test
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
