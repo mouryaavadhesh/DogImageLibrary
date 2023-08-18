@@ -8,7 +8,7 @@ import retrofit2.http.Query
 internal interface APIInterface {
 
     @GET("random")
-    fun doGetImage(): Call<Image?>
+    fun doGetImage(): Call<Image>
 
     @GET("random/{number}")
     fun doGetImages(@Path("number")  number:Int): Call<ImageList>

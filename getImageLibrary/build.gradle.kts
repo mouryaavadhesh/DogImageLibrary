@@ -37,6 +37,9 @@ dependencies {
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
+    implementation("androidx.databinding:compilerCommon:3.2.0-alpha11")
+    implementation("androidx.databinding:databinding-compiler-common:8.1.0")
+    implementation("com.google.firebase:firebase-crashlytics-buildtools:2.9.8")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -47,8 +50,6 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:4.7.2")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
-//    //Coroutine
-//    implementation ("org.jetbrains.Kotlinx:Kotlinx-Coroutines-core:1.6.4")
-//    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    testImplementation ("org.mockito:mockito-core:2.19.0")
 
 }

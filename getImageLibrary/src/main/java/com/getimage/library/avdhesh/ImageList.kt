@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName
 class Image {
 
     @SerializedName("status")
-    var status: String? = null
+    var status: String = ""
 
     @SerializedName("message")
-    var message: String? = null
+    var message: String = ""
 
 }
 

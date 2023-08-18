@@ -20,10 +20,10 @@ class DogImages() {
     }
 
     fun getImage()  {
-        val call1: Call<Image?> = apiInterface!!.doGetImage()
+        val call1: Call<Image> = apiInterface!!.doGetImage()
         call1.enqueue(object : Callback<Image?> {
             override fun onResponse(call: Call<Image?>, response: Response<Image?>) {
-                displayImage = response.body()!!.message!!
+                displayImage = response.body()!!.message
             }
 
             override fun onFailure(call: Call<Image?>, t: Throwable) {
